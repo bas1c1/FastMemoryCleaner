@@ -1,0 +1,2 @@
+# FastMemoryCleaner
+Fast memory cleaner
