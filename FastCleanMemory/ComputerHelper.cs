@@ -1,10 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: WinMemoryCleaner.ComputerHelper
-// Assembly: WinMemoryCleaner, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6b2fedd337d48392
-// MVID: C6DC4AE6-F35B-40BC-B03E-1A665C103BE4
-// Assembly location: C:\Users\Roman\Desktop\SCleaner.exe
-// XML documentation location: C:\Users\Roman\Desktop\SCleaner.xml
-
 using Microsoft.VisualBasic.Devices;
 using System;
 using System.Security.Principal;
