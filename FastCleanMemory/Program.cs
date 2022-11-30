@@ -1,7 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using FastCleanMemory;
 
@@ -38,12 +40,34 @@ namespace FastCleanMemory
                 Settings.Save();
             }
         }
-        static void Main(string[] args)
+        static void monitor()
         {
-            Console.WriteLine("Fast memory cleaner");
-            MemoryHelper.Clean(Settings.MemoryAreas);
-            Console.WriteLine("Cleaning is complete\nPress any key to exit...");
-            Console.Read();
+            while (true)
+            {
+                ManagementObjectSearcher ramMonitor =    //запрос к WMI для получения памяти ПК
+                new ManagementObjectSearcher("SELECT TotalVisibleMemorySize,FreePhysicalMemory FROM Win32_OperatingSystem");
+
+                foreach (ManagementObject objram in ramMonitor.Get())
+                {
+                    ulong totalRam = Convert.ToUInt64(objram["TotalVisibleMemorySize"]);    //общая память ОЗУ
+                    ulong busyRam = totalRam - Convert.ToUInt64(objram["FreePhysicalMemory"]);         //занятная память = (total-free)
+                    Console.SetCursorPosition(0, 0);
+                    Console.WriteLine(((busyRam * 100) / totalRam) + "% used");       //вычисляем проценты занятой памяти
+                }
+            }
+        }
+        static async Task Main(string[] args)
+        {
+            Console.CursorVisible = false;
+            Thread t = new Thread(monitor);
+            t.Start();
+            while (true)
+            {
+                Console.SetCursorPosition(0, 1);
+                Console.WriteLine("Memory cleaned - " + DateTime.Now.TimeOfDay);
+                MemoryHelper.Clean(Settings.MemoryAreas);
+                System.Threading.Thread.Sleep(300000);
+            }
         }
     }
 }
