@@ -1,0 +1,9 @@
+C:\Users\Roman\source\repos\FastCleanMemory\FastCleanMemory\bin\Debug\FastCleanMemory.exe.config
+C:\Users\Roman\source\repos\FastCleanMemory\FastCleanMemory\bin\Debug\FastCleanMemory.exe
+C:\Users\Roman\source\repos\FastCleanMemory\FastCleanMemory\bin\Debug\FastCleanMemory.pdb
+C:\Users\Roman\source\repos\FastCleanMemory\FastCleanMemory\obj\Debug\FastCleanMemory.csproj.AssemblyReference.cache
+C:\Users\Roman\source\repos\FastCleanMemory\FastCleanMemory\obj\Debug\FastCleanMemory.Properties.Resources.resources
+C:\Users\Roman\source\repos\FastCleanMemory\FastCleanMemory\obj\Debug\FastCleanMemory.csproj.GenerateResource.cache
+C:\Users\Roman\source\repos\FastCleanMemory\FastCleanMemory\obj\Debug\FastCleanMemory.csproj.CoreCompileInputs.cache
+C:\Users\Roman\source\repos\FastCleanMemory\FastCleanMemory\obj\Debug\FastCleanMemory.exe
+C:\Users\Roman\source\repos\FastCleanMemory\FastCleanMemory\obj\Debug\FastCleanMemory.pdb
