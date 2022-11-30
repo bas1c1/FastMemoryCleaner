@@ -1,2 +1,2 @@
 # FastMemoryCleaner
-Fast memory cleaner
+This is a tiny version of https://github.com/Inmutef/SCleaner
