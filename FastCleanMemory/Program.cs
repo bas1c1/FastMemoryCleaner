@@ -52,7 +52,7 @@ namespace FastCleanMemory
                     ulong totalRam = Convert.ToUInt64(objram["TotalVisibleMemorySize"]);    //общая память ОЗУ
                     ulong busyRam = totalRam - Convert.ToUInt64(objram["FreePhysicalMemory"]);         //занятная память = (total-free)
                     Console.SetCursorPosition(0, 0);
-                    Console.WriteLine(((busyRam * 100) / totalRam) + "% used");       //вычисляем проценты занятой памяти
+                    Console.WriteLine(((busyRam * 100) / totalRam) + "% used\n" + "Memory cleaned - " + DateTime.Now.TimeOfDay);       //вычисляем проценты занятой памяти
                 }
             }
         }
@@ -63,8 +63,6 @@ namespace FastCleanMemory
             t.Start();
             while (true)
             {
-                Console.SetCursorPosition(0, 1);
-                Console.WriteLine("Memory cleaned - " + DateTime.Now.TimeOfDay);
                 MemoryHelper.Clean(Settings.MemoryAreas);
                 System.Threading.Thread.Sleep(300000);
             }
