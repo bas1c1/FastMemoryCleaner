@@ -1,16 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Management;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using FastCleanMemory;
+using System.Drawing;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace FastCleanMemory
 {
     class Program
     {
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
         public Enums.Memory.Area MemoryAreas
         {
             get => Settings.MemoryAreas;
@@ -40,6 +42,7 @@ namespace FastCleanMemory
                 Settings.Save();
             }
         }
+        /*
         static void monitor()
         {
             while (true)
@@ -52,19 +55,21 @@ namespace FastCleanMemory
                     ulong totalRam = Convert.ToUInt64(objram["TotalVisibleMemorySize"]);    //общая память ОЗУ
                     ulong busyRam = totalRam - Convert.ToUInt64(objram["FreePhysicalMemory"]);         //занятная память = (total-free)
                     Console.SetCursorPosition(0, 0);
-                    Console.WriteLine(((busyRam * 100) / totalRam) + "% used\n" + "Memory cleaned - " + DateTime.Now.TimeOfDay);       //вычисляем проценты занятой памяти
+                    Console.WriteLine(((busyRam * 100) / totalRam) + "% used");       //вычисляем проценты занятой памяти
                 }
             }
-        }
-        static async Task Main(string[] args)
+        } */
+        static void Main(string[] args)
         {
-            Console.CursorVisible = false;
-            Thread t = new Thread(monitor);
-            t.Start();
+            var icon = new NotifyIcon();
+            icon.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
+            icon.Visible = true;
+            var handle = GetConsoleWindow();
+            ShowWindow(handle, 0);
             while (true)
             {
                 MemoryHelper.Clean(Settings.MemoryAreas);
-                System.Threading.Thread.Sleep(300000);
+                System.Threading.Thread.Sleep(90000);
             }
         }
     }
